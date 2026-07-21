@@ -1,0 +1,17 @@
+services:
+  shadowsync:
+    build:
+      context: .
+    image: shadowsync:local
+    pull_policy: never
+    ports:
+      - "8000:8000"
+    environment:
+      SHADOWSYNC_DATA_DIR: /data
+      SHADOWSYNC_FRONTEND_DIST: /app/frontend/dist
+    volumes:
+      - shadowsync-data:/data
+    restart: unless-stopped
+
+volumes:
+  shadowsync-data:
